@@ -6,7 +6,11 @@ from .forms import noticiaForm, comentarioForm, editarNoticiaForm
 from .models import Noticia
 
 def index(request):
-	query = Noticia.objects.order_by('-id')[0]
+	query = Noticia.objects.all()
+	if len(query) > 0:
+		query = query[0]
+	else:
+		return render(request, 'core/index.html')
 	return render(request, 'core/index.html', {'query': query})
 
 class noticiaListView(generic.ListView):
