@@ -5,13 +5,13 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'tk3e_8ih^wt+pavi$*%2b1-+pjobgdaa#vj%-e@oz^p42%71rg')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 
-ALLOWED_HOSTS = ['donodotime.herokuapp.com']
+ALLOWED_HOSTS = ['donodotime.herokuapp.com', '127.0.0.1']
 
 # social-auth
 
