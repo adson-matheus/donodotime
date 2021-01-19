@@ -11,7 +11,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'tk3e_8ih^wt+pavi$*%2b1-+pjobgd
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 
-ALLOWED_HOSTS = ['peaceful-ravine-06514.herokuapp.com']
+ALLOWED_HOSTS = ['donodotime.herokuapp.com']
 
 # social-auth
 
