@@ -3,7 +3,7 @@ from core import views
 
 app_name = 'core'
 urlpatterns = [
-	path('', views.index, name='index'),
+	path('/', views.index, name='index'),
 
 	path('noticias/', views.noticiaListView.as_view(), name='noticiaListView'),
 	path('noticias/new/', views.noticiaCadastro, name='noticiaCadastro'),
