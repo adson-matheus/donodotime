@@ -1,0 +1,9 @@
+{% extends 'core/base.html' %}
+{% block title %}Editar Notícia{% endblock %}
+{% block content %}
+<form method="POST">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button type="submit" class="btn btn-success">Enviar</button>
+</form>
+{% endblock %}

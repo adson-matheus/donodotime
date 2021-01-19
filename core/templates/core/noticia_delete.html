@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+{% block title %}Excluir Notícia?{% endblock %}
+{% block content %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-12">
+			<h3>Você está prestes a excluir '{{form.titulo}}'</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<p>Você tem certeza?</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<a class="btn btn-success" href="{% url 'core:noticiaExcluir' form.id %}">Sim</a>
+			<a class="btn btn-danger" href="{% url 'core:index' %}">Não, voltar!</a>
+		</div>
+	</div>
+</div>
+{% endblock %}

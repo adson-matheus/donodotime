@@ -1,0 +1,29 @@
+body{
+	background-color: #ffffff!important;
+}
+.noticia_reportagem{
+	word-wrap: break-word;
+}
+/* cor do nav */
+nav{
+	background-color: #82589F!important;
+}
+
+/*links do nav*/
+.navbar-dark .navbar-nav .nav-link{
+	color: #ffffff!important;
+}
+.navbar-dark .navbar-nav .nav-link:hover{
+	color: #D6A2E8!important;
+}
+
+/* todos os titulos da aba noticias */
+#titulo-reportagem{
+	color: #82589F!important;
+}
+#titulo-reportagem:hover{
+	color: #8e44ad!important;
+}
+a:hover{
+	text-decoration: none!important;
+}

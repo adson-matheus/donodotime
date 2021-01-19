@@ -1,0 +1,106 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{noticia.titulo}}{% endblock %}
+
+{% block content %}
+	{% if request.user.is_staff %}
+		<a class="btn btn-warning" href="{% url 'core:noticiaEdit' noticia.id %}">Editar</a>
+		<a class="btn btn-danger" href="{% url 'core:noticiaExcluirBotao' noticia.id %}">Excluir</a>
+	{% endif %}
+	<div class="container-fluid mt-5 mb-5">
+		<div class="row mb-5">
+			<div class="col-sm-12">
+				<h1>{{noticia.titulo}}</h1>
+				<small>Por {{noticia.autor}}, {{noticia.data}}</small>				
+			</div>
+		</div>
+
+{% if user.is_authenticated %}
+	<!-- url foto se disponivel -->
+	{% if noticia.url_foto %}
+		<div class="row mb-5">
+			<div class="col-md-1 col-lg-1"></div>
+			<div class="col-sm-12 col-md-10 col-lg-10">
+				<img class="img-fluid rounded mx-auto" src="{{noticia.url_foto}}" alt="{{noticia.autorais_foto}}">
+				<small>{{noticia.autorais_foto}}</small>
+			</div>
+			<div class="col-md-1 col-lg-1"></div>
+		</div>
+	{% endif %}
+		{% autoescape off %}
+			<div class="row">
+				<div class="col-sm-1 col-md-1 col-lg-1"></div>
+				<div class="col-sm-10 col-md-10 col-lg-10">
+					<p class="noticia_reportagem text-justify">{{noticia.reportagem_pt1}}</p>
+				</div>
+			</div>
+		{% endautoescape %}
+
+	<!-- tweet -->
+	{% if noticia.tweet %}
+		{% autoescape off %}
+			<div class="row">
+				<div class="col-sm-2 col-md-2 col-lg-2"></div>
+				<div class="col-sm-8">
+					{{ noticia.tweet }}
+				</div>
+			</div>
+		{% endautoescape %}
+	{% endif %}
+	
+	<!-- segunda parte da reportagem -->
+	{% if noticia.reportagem_pt2 %}
+		{% autoescape off %}
+			<div class="row">
+				<div class="col-sm-1 col-md-1 col-lg-1"></div>
+				<div class="col-sm-10 col-md-10 col-lg-10">
+					<p class="noticia_reportagem text-justify">{{noticia.reportagem_pt2}}</p>
+				</div>
+			</div>
+		{% endautoescape %}
+	{% endif %}
+
+{% else %}
+		<div class="row">
+			<div class="col-md-4 col-lg-4"></div>
+			<div class="col-sm-12 col-md-4 col-lg-4">
+				<p>Login para visualizar esta reportagem completa.</p>
+			</div>
+		</div>
+	</div>
+{% endif %}
+
+
+<!-- secao de comentarios -->
+	<div class="row mb-5 mt-5">
+		<div class="col-sm-6">
+			<h2>Comentários</h2>
+		</div>
+{% if noticia.comentarios.all %}
+		<div class="col-sm-6">
+			<a class="float-sm-right" href="{% url 'core:comentarioCadastro' noticia.id %}">
+				<button class="btn btn-success">Comentar</button>
+			</a>
+		</div>
+	</div>
+	{% for comentario in noticia.comentarios.all %}
+		<div class="row">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-11 col-md-12">
+				<b>{{ comentario.nome }}</b> <small>- {{ comentario.data }}</small>
+				<p>{{ comentario.comment }}</p>
+			</div>
+		</div>
+	{% endfor %}
+{% else %}
+	</div>
+	<div class="row mb-5 mt-5">
+		<div class="col-sm-12">
+			<p>Sem comentários ainda...<a href="{% url 'core:comentarioCadastro' noticia.id %}">Comente</a></p>
+		</div>
+	</div>
+
+
+{% endif %}
+
+{% endblock %}

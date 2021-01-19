@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Dono do time - Comentar em '{{ id_noticia.titulo }}' {% endblock %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+				<form method="POST">
+					{% csrf_token %}
+					<div class="mb-3">
+						<label for="noticia_title" class="form-label">Noticia:</label>
+						<!-- usuario vê o titulo -->
+						<input type="text" name="noticia_title" id="noticia_title" class="form-control" value="{{id_noticia.titulo}}" required readonly maxlength="50">
+						<!-- o id referente ao titulo é enviado... -->
+						<input type="hidden" name="noticia" id="noticia" value="{{id_noticia.id}}">
+					</div>
+					<div class="mb-3">
+						<label for="nome" class="form-label">*Nome:</label>
+						<input type="text" placeholder="Nome" name="nome" id="nome" class="form-control" required maxlength="50" autofocus>
+					</div>
+					<div class="mb-3">
+						<label for="comment" class="form-label">*Comentário:</label>
+						<textarea type="text" placeholder="Comentário" name="comment" id="comment" class="form-control" required maxlength="255"></textarea>
+					</div>
+					<button type="submit" class="btn btn-primary mb-3">Enviar</button>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}

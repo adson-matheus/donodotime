@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Dono do time - Notícias{% endblock %}
+
+{% block content %}
+
+	<!-- verifica se há noticias cadastradas -->
+	{% if noticia_list %}
+		<!-- verifica se o usuário está autenticado para acessar as noticias -->
+		{% if user.is_authenticated %}
+			{% for query in noticia_list %}
+				<div class="container-fluid">
+					<div class="row mb-5">
+						<div class="col-sm-12">
+							<h1>
+								<a id="titulo-reportagem" href="{% url 'core:noticiaDetailView' query.id %}">{{query.titulo}}</a>
+							</h1>
+							<small>Por {{query.autor}}, {{query.data}}</small>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		{% else %}
+		<!-- se o user não está autenticado, pode ver o titulo porém não vê a reportagem -->
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-sm-12">
+						<h3>
+							<a href="{% url 'social:begin' 'google-oauth2' %}">Login para visualizar notícias</a>
+						</h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						{% for query in noticia_list %}
+							<h1>{{query.titulo}}</h1>
+							<small>Por {{query.autor}}, {{query.data}}</small>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		{% endif %}
+	{% else %}
+	<p>nenhuma noticia cadastrada</p>
+	{% endif %}
+{% endblock %}
