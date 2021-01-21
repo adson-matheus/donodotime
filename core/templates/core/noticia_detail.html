@@ -3,10 +3,6 @@
 {% block title %}{{noticia.titulo}}{% endblock %}
 
 {% block content %}
-	{% if request.user.is_staff %}
-		<a class="btn btn-warning" href="{% url 'core:noticiaEdit' noticia.id %}">Editar</a>
-		<a class="btn btn-danger" href="{% url 'core:noticiaExcluirBotao' noticia.id %}">Excluir</a>
-	{% endif %}
 	<div class="container-fluid mt-5 mb-5">
 		<div class="row mb-5">
 			<div class="col-sm-12">
@@ -15,13 +11,30 @@
 			</div>
 		</div>
 
+	{% if request.user.is_staff %}
+		<div class="container-fluid mt-5 mb-5">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="float-right">
+							<a class="btn btn-outline-warning" href="{% url 'core:noticiaEdit' noticia.id %}">
+								<i class="bi bi-pencil-square"></i>
+							</a>
+							<a class="btn btn-outline-danger" href="{% url 'core:noticiaExcluirBotao' noticia.id %}">
+								<i class="bi bi-trash"></i>
+							</a>						
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+
 {% if user.is_authenticated %}
 	<!-- url foto se disponivel -->
 	{% if noticia.url_foto %}
 		<div class="row mb-5">
 			<div class="col-md-1 col-lg-1"></div>
 			<div class="col-sm-12 col-md-10 col-lg-10">
-				<img class="img-fluid rounded mx-auto" src="{{noticia.url_foto}}" alt="{{noticia.autorais_foto}}">
+				<img class="img-fluid rounded mx-auto d-block" src="{{noticia.url_foto}}" alt="{{noticia.autorais_foto}}">
 				<small>{{noticia.autorais_foto}}</small>
 			</div>
 			<div class="col-md-1 col-lg-1"></div>
