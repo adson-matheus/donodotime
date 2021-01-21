@@ -16,6 +16,7 @@
 								<a id="titulo-reportagem" href="{% url 'core:noticiaDetailView' query.id %}">{{query.titulo}}</a>
 							</h1>
 							<small>Por {{query.autor}}, {{query.data}}</small>
+							<hr>
 						</div>
 					</div>
 				</div>
@@ -25,8 +26,8 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-sm-12">
-						<h3>
-							<a href="{% url 'social:begin' 'google-oauth2' %}">Login para visualizar notícias</a>
+						<h3 class="text-center mt-3 mb-3">
+							<a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Login para visualizar notícias</a>
 						</h3>
 					</div>
 				</div>
@@ -35,6 +36,7 @@
 						{% for query in noticia_list %}
 							<h1>{{query.titulo}}</h1>
 							<small>Por {{query.autor}}, {{query.data}}</small>
+							<hr>
 						{% endfor %}
 					</div>
 				</div>
