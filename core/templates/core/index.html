@@ -4,17 +4,31 @@
 
 {% block content %}
 	{% if request.user.is_staff %}
-		<a href="{% url 'core:noticiaCadastro' %}">Cadastrar nova notícia</a>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="float-right">
+						<a class="btn btn-outline-success" href="{% url 'core:noticiaCadastro' %}">
+							<i class="bi bi-plus-square"></i> Notícia
+						</a>
+						<a class="btn btn-outline-danger" href="{% url 'logout' %}">
+							<i class="bi bi-box-arrow-right"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
 	{% endif %}
+	<hr>
 	{% if query.titulo %}
 	<div class="container-fluid mt-5">
 		<div class="row">
-			<div class="col-sm-8">
+			<div class="col-sm-12 col-md-8 col-lg-8">
 				<!-- foto da noticia mais recente -->
-				<img class="img-fluid rounded" src="{{query.url_foto}}" alt="{{query.autorais_foto}}" height="400px">
+				<img class="img-fluid rounded" src="{{query.url_foto}}" alt="{{query.autorais_foto}}">
 			</div>
-			<div class="col-sm-4">
-				<h1 class="text-uppercase">
+			<div class="col-sm-12 col-md-4 col-lg-4">
+				<h3>
 					<!-- se estiver autenticado, pode ler a noticia completa -->
 					{% if user.is_authenticated %}
 						<a href="{% url 'core:noticiaDetailView' query.id %}">{{query.titulo}}</a>
@@ -22,40 +36,48 @@
 						<!-- se não estiver autenticado, só pode ler -->
 						{{query.titulo}}
 					{% endif %}
-				</h1>
+				</h3>
+				<p class="text-justify">
+					{{query.reportagem_pt1}}..
+					{% if user.is_authenticated %}
+						<a href="{% url 'core:noticiaDetailView' query.id %}">Ler mais</a>
+					{% else %}
+						<a href="{% url 'social:begin' 'google-oauth2' %}" id="login">Login para ler a notícia completa</a>
+					{% endif %}
+				</p>
 			</div>
 		</div>
 	</div>
 	{% endif %}
+	<hr>
 	<footer>
 		<div class="container-fluid flex-column flex-sm-row mt-5">
 			<div class="row">
-				<div class="col-sm-4">
-					<h2>Sobre</h2>
-					<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<div class="col-sm-4 border-bottom">
+					<h3>Sobre</h3>
+					<p class="text-justify">
+						<cite>Dono do time</cite> é um site criado por Adson Matheus e tem o objetivo de postar notícias sobre NBA e NFL. <br>Geralmente, utiliza-se fotos do Twitter das equipes e tweets de jornalistas, em português ou não, que complementem as informações.
+						<br>
+						Sinta-se livre para comentar nas publicações e respeite os demais e as opiniões. <br><br>
+						Este projeto está disponível no <i class="bi bi-github"></i> Github neste <a href="https://www.github.com/adson62/donodotime">link</a>.
+					</p>
 				</div>
-				<div class="col-sm-4">
-					<h2>Contato</h2>
-					<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<div class="col-sm-4 mt-2 border-bottom">
+					<h3>Informações</h3>
+					<p class="text-justify">
+						Lorem, ipsum dolor sit amet consectetur, adipisicing elit. Cum corrupti quae at incidunt expedita distinctio consectetur velit eum officia veritatis repellendus est, ipsam molestiae necessitatibus, perferendis ullam voluptate! Sapiente, iure.
+					</p>
 				</div>
-				<div class="col-sm-4">
-					<h2>Emails:</h2>
-					<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<div class="col-sm-4 mt-2 border-bottom">
+					<h3>Emails:</h3>
+					<p class="text-justify">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					</p>
 				</div>
 			</div>
 		</div>
