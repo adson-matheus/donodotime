@@ -39,14 +39,14 @@ def noticiaEdit(request, id):
 	if not request.user.is_staff:
 		return redirect('core:index')
 	else:
-		form = Noticia.objects.get(pk=id)
+		form_id = Noticia.objects.get(pk=id)
 		if request.method == 'POST':
-			form = editarNoticiaForm(request.POST, instance=form)
+			form = editarNoticiaForm(request.POST, instance=form_id)
 			if form.is_valid():
 				form.save()
-				return redirect('core:noticiaListView')
+				return redirect('core:noticiaDetailView', form_id.id)
 		else:
-			form = noticiaForm(instance=form)
+			form = editarNoticiaForm(instance=form_id)
 		return render(request, 'core/noticia_edit.html', {'form':form})
 
 # um botao antes de excluir permanente
@@ -80,7 +80,7 @@ def comentarioCadastro(request, id):
 			form = comentarioForm(request.POST)
 			if form.is_valid:
 				form.save()
-				return redirect('core:noticiaListView')
+				return redirect('core:noticiaDetailView', id_noticia.id)
 		else:
 			form = comentarioForm()
 	return render(request, "core/comentario_cadastro.html", {'form':form, 'id_noticia':id_noticia})

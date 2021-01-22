@@ -1,6 +1,6 @@
 {% extends 'core/base.html' %}
 
-{% block title %}Dono do time - Comentar em '{{ id_noticia.titulo }}' {% endblock %}
+{% block title %}Comentar em '{{ id_noticia.titulo }}' {% endblock %}
 
 {% block content %}
 	<div class="container-fluid">
@@ -22,7 +22,7 @@
 					</div>
 					<div class="mb-3">
 						<label for="comment" class="form-label">*Comentário:</label>
-						<textarea type="text" placeholder="Comentário" name="comment" id="comment" class="form-control" required maxlength="255" autofocus></textarea>
+						<textarea rows="8" type="text" placeholder="Comentário" name="comment" id="comment" class="form-control" required maxlength="255" autofocus></textarea>
 					</div>
 					<button type="submit" class="btn btn-outline-success float-right mb-3"><i class="bi bi-check2"></i> Enviar</button>
 				</form>
