@@ -7,7 +7,7 @@ urlpatterns = [
 
 	path('noticias/', views.noticiaListView.as_view(), name='noticiaListView'),
 	path('noticias/new/', views.noticiaCadastro, name='noticiaCadastro'),
-	path('noticias/<int:pk>/', views.noticiaDetailView.as_view(), name='noticiaDetailView'),
+	path('noticias/<int:id>/', views.noticiaDetalhe, name='noticiaDetalhe'),
 	path('noticias/<int:id>/edit/', views.noticiaEdit, name='noticiaEdit'),
 	path('noticias/<int:id>/delete/', views.noticiaExcluirBotao, name='noticiaExcluirBotao'),
 	path('noticias/<int:id>/delete/confirm/', views.noticiaExcluir, name='noticiaExcluir'),
