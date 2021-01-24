@@ -4,31 +4,32 @@
 
 {% block content %}
 
-	{% if query.titulo %}
-	<div class="container-fluid mt-5">
+	{% if noticia is not None %}
+	<h5 class="text-center mt-5 mb-3">Última notícia - {{noticia.data}}.</h5>
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-12 col-md-8 col-lg-8">
+			<div class="col-sm-12 col-md-6 col-xl-12">
 				<!-- foto da noticia mais recente -->
-				<img class="img-fluid rounded" src="{{query.url_foto}}" alt="{{query.autorais_foto}}">
+				<img class="img-fluid rounded" src="{{noticia.url_foto}}" alt="{{noticia.autorais_foto}}">
 			</div>
-			<div class="col-sm-12 col-md-4 col-lg-4">
+			<div class="col-sm-12 col-md-6 col-xl-12">
 				<h3>
 					<!-- se estiver autenticado, pode ler a noticia completa -->
 					{% if user.is_authenticated %}
-						<a href="{% url 'core:noticiaDetailView' query.id %}">{{query.titulo}}</a>
+						<a href="{% url 'core:noticiaDetalhe' noticia.id %}">{{noticia.titulo}}</a>
 					{% else %}
 						<!-- se não estiver autenticado, só pode ler -->
-						{{query.titulo}}
+						{{noticia.titulo}}
 					{% endif %}
 				</h3>
 				<p class="text-justify">
 					{% autoescape off %}
-						{{query.reportagem_pt1}}..
+						{{noticia.reportagem_pt1}}..
 					{% endautoescape %}
 					{% if user.is_authenticated %}
-						<a href="{% url 'core:noticiaDetailView' query.id %}">Ler mais</a>
+						<a href="{% url 'core:noticiaDetalhe' noticia.id %}">Ler mais</a>
 					{% else %}
-						<a href="{% url 'social:begin' 'google-oauth2' %}?next={% url 'core:noticiaDetailView' query.id %}" id="login">Login para ler a notícia completa</a>
+						<a href="{% url 'social:begin' 'google-oauth2' %}?next={% url 'core:noticiaDetalhe' noticia.id %}" id="login">Login para ler a notícia completa</a>
 					{% endif %}
 				</p>
 			</div>
@@ -36,33 +37,55 @@
 	</div>
 	{% endif %}
 	<hr>
+
+	{% if last_news is not None %}
+	<h5 class="mt-5 mb-3 text-center">Notícias recentes</h5>
+	{% for news in last_news %}
+	<div class="container-fluid">
+		<div class="row mb-3">
+			<div class="col-sm-12 col-md-6 col-xl-12">
+				<!-- fotos das ultimas noticias -->
+				<img class="img-fluid rounded" src="{{news.url_foto}}" alt="{{news.autorais_foto}}">
+			</div>
+			<div class="col-sm-12 col-md-6 col-xl-12">
+				<h3>
+					<!-- se estiver autenticado, pode ler a noticia completa -->
+					{% if user.is_authenticated %}
+						<a href="{% url 'core:noticiaDetalhe' news.id %}">{{news.titulo}}</a>
+					{% else %}
+						<!-- se não estiver autenticado, só pode ler uma parte -->
+						{{news.titulo}}
+					{% endif %}
+				</h3>
+				<p class="text-justify">
+					{% autoescape off %}
+						{{news.reportagem_pt1}}..
+					{% endautoescape %}
+					{% if user.is_authenticated %}
+						<a href="{% url 'core:noticiaDetalhe' news.id %}">Ler mais</a>
+					{% else %}
+						<a href="{% url 'social:begin' 'google-oauth2' %}?next={% url 'core:noticiaDetalhe' news.id %}" id="login">Login para ler a notícia completa</a>
+					{% endif %}
+				</p>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+	<h3 class="mt-5 text-center">Veja todas as notícias <a href="/noticias/">aqui</a>.</h3>
+	<hr>
+	{% endif %}
+
+	<!-- secao Sobre -->
 	<footer>
 		<div class="container-fluid flex-column flex-sm-row mt-5">
 			<div class="row">
-				<div class="col-sm-4 border-bottom">
+				<div class="col-sm-12 border-bottom">
 					<h3>Sobre</h3>
 					<p class="text-justify">
 						<cite>Dono do time</cite> é um site criado por Adson Matheus e tem o objetivo de postar notícias sobre NBA e NFL. <br>Geralmente, utiliza-se fotos do Twitter das equipes e tweets de jornalistas, em português ou não, que complementem as informações.
 						<br>
 						Sinta-se livre para comentar nas publicações e respeite os demais e as opiniões. <br><br>
-						Este projeto está disponível no <i class="bi bi-github"></i> Github neste <a href="https://www.github.com/adson62/donodotime">link</a>.
-					</p>
-				</div>
-				<div class="col-sm-4 mt-2 border-bottom">
-					<h3>Informações</h3>
-					<p class="text-justify">
-						Lorem, ipsum dolor sit amet consectetur, adipisicing elit. Cum corrupti quae at incidunt expedita distinctio consectetur velit eum officia veritatis repellendus est, ipsam molestiae necessitatibus, perferendis ullam voluptate! Sapiente, iure.
-					</p>
-				</div>
-				<div class="col-sm-4 mt-2 border-bottom">
-					<h3>Emails:</h3>
-					<p class="text-justify">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+						Este projeto está disponível no <i class="bi bi-github"></i> Github neste <a target="_blank" href="https://www.github.com/adson62/donodotime">link</a>.
 					</p>
 				</div>
 			</div>

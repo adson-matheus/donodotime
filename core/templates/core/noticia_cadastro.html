@@ -12,28 +12,28 @@
 					{% csrf_token %}
 
 					<div class="mb-3">
-						<label for="titulo" class="form-label">Título:</label>
+						<label for="titulo" class="form-label">*Título:</label>
 						<input type="text" placeholder="Título" name="titulo" id="titulo" class="form-control" required maxlength="255" autofocus>
 					</div>
 					<div class="mb-3">
-						<label for="autor" class="form-label">Autor:</label>
+						<label for="autor" class="form-label">*Autor:</label>
 						<input type="text" placeholder="Autor" name='autor' id="autor" class="form-control" required maxlength="50">
 					</div>
 					<div class="mb-3">
-						<label for="reportagem_pt1" class="form-label">Reportagem parte 1:</label>
-						<textarea rows="15" type="text" placeholder="Primeira parte da reportagem" name="reportagem_pt1" id="reportagem_pt1" class="form-control" required maxlength="800"></textarea>
+						<label for="reportagem_pt1" class="form-label">*Reportagem parte 1:</label>
+						<textarea rows="15" type="text" placeholder="Primeira parte da reportagem" name="reportagem_pt1" id="reportagem_pt1" class="form-control" required maxlength="2000"></textarea>
 					</div>
 					<div class="mb-3">
-						<label for="reportagem_pt2" class="form-label">Reportagem parte 2:</label>
-						<textarea rows="15" type="text" placeholder="Segunda parte da reportagem" name="reportagem_pt2" id="reportagem_pt2" class="form-control" required maxlength="800"></textarea>
+						<label for="reportagem_pt2" class="form-label">*Reportagem parte 2:</label>
+						<textarea rows="15" type="text" placeholder="Segunda parte da reportagem" name="reportagem_pt2" id="reportagem_pt2" class="form-control" required maxlength="2000"></textarea>
 					</div>
 					<div class="mb-3">
 						<label for="tweet" class="form-label">Tweet incorporado:</label>
-						<textarea rows="8" type="text" placeholder="Tweet incorporado" name='tweet' id="tweet" class="form-control" maxlength="800"></textarea>
+						<textarea rows="8" type="text" placeholder="Tweet incorporado" name='tweet' id="tweet" class="form-control" maxlength="2000"></textarea>
 					</div>
 					<div class="mb-3">
 						<label for="url_foto" class="form-label">URL da foto:</label>
-						<textarea rows="8" type="text" placeholder="URL da foto" name='url_foto' id="url_foto" class="form-control" maxlength="800"></textarea>
+						<textarea rows="8" type="text" placeholder="URL da foto" name='url_foto' id="url_foto" class="form-control" maxlength="2000"></textarea>
 					</div>
 					<div class="mb-3">
 						<label for="autorais_foto" class="form-label">Direitos autorais da foto:</label>
