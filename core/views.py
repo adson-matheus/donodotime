@@ -67,6 +67,7 @@ def noticiaEdit(request, id):
 			form = editarNoticiaForm(request.POST, instance=form_id)
 			if form.is_valid():
 				form.save()
+                                return redirect('core:noticiaDetalhe', form_id.id)
 		else:
 			form = editarNoticiaForm(instance=form_id)
 		return render(request, 'core/noticia_edit.html', {'form':form})
