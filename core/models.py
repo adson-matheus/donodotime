@@ -3,7 +3,7 @@ from django.db import models
 class Noticia(models.Model):
 	titulo = models.CharField(max_length=255, blank=False)
 	reportagem_pt1 = models.TextField(max_length=2000, blank=False)
-	reportagem_pt2 = models.TextField(max_length=2000, blank=True)
+	reportagem_pt2 = models.TextField(max_length=2000, blank=False)
 	autor = models.CharField(max_length=50, blank=True)
 	tweet = models.TextField(max_length=2000, blank=True)
 	url_foto = models.TextField(max_length=2000, blank=True)
@@ -22,5 +22,7 @@ class Comentario(models.Model):
 	comment = models.TextField(max_length=500, blank=False, null=False)
 	data = models.DateField(auto_now_add=True)
 
+	class Meta:
+		ordering = ('-id',)
 	def __str__(self):
-		return '%s, por: %s' %(self.noticia.titulo, self.nome)
+		return '%s, em "%s"' %(self.nome, self.noticia.titulo)

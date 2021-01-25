@@ -6,7 +6,6 @@ from .forms import noticiaForm, comentarioForm, editarNoticiaForm
 from .models import Noticia, Comentario
 
 def index(request):
-	#verifica se há noticias cadastradas
 	noticia = Noticia.objects.all()
 	if len(noticia) >= 4:
 		#traz os 3 ultimos resultados, excluindo o primeiro
@@ -18,17 +17,12 @@ def index(request):
 	else:
 		last_news = None
 
+	#verifica se há noticias cadastradas e
 	#pega a primeira noticia para a parte principal
 	if len(noticia) > 0:
 		noticia = noticia[0]
 	else:
 		noticia = None
-
-	#pegando as 2 ultimas noticias
-	#if noticia.count() >= 2:
-#	else:
-#		last_news = None
-
 	return render(request, 'core/index.html', {'noticia': noticia, 'last_news':last_news})
 
 class noticiaListView(generic.ListView):
@@ -40,7 +34,6 @@ def noticiaDetalhe(request, id):
 	q = noticia.comentarios
 	qte = q.count()
 	return render(request, 'core/noticia_detail.html', {'noticia':noticia, 'qte':qte})
-	
 
 #forms
 @login_required
@@ -67,7 +60,7 @@ def noticiaEdit(request, id):
 			form = editarNoticiaForm(request.POST, instance=form_id)
 			if form.is_valid():
 				form.save()
-                                return redirect('core:noticiaDetalhe', form_id.id)
+				return redirect('core:noticiaDetalhe', form_id.id)
 		else:
 			form = editarNoticiaForm(instance=form_id)
 		return render(request, 'core/noticia_edit.html', {'form':form})
@@ -103,9 +96,7 @@ def comentarioCadastro(request, id):
 			form = comentarioForm(request.POST)
 			if form.is_valid:
 				form.save()
+				return redirect('core:noticiaDetalhe', id_noticia.id)
 		else:
 			form = comentarioForm()
-	return render(request, "core/comentario_cadastro.html",
-		{'form':form,
-		'id_noticia':id_noticia,
-		'qte':qte})
+	return render(request, "core/comentario_cadastro.html", {'form':form, 'id_noticia':id_noticia,})
