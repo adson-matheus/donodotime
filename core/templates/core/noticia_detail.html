@@ -7,7 +7,7 @@
 		<div class="row mb-5">
 			<div class="col-sm-12">
 				<h1>{{noticia.titulo}}</h1>
-				<small>Por {{noticia.autor}}, {{noticia.data}}</small>				
+				<small>Por {{noticia.autor}}, {{noticia.data}}</small>
 			</div>
 		</div>
 
@@ -40,14 +40,16 @@
 			<div class="col-md-1 col-lg-1"></div>
 		</div>
 	{% endif %}
-		{% autoescape off %}
-			<div class="row">
-				<div class="col-sm-1 col-md-1 col-lg-1"></div>
-				<div class="col-sm-10 col-md-10 col-lg-10">
-					<p class="noticia_reportagem text-justify">{{noticia.reportagem_pt1}}</p>
-				</div>
+
+	<!-- parte 1 da reportagem -->
+	{% autoescape off %}
+		<div class="row">
+			<div class="col-sm-1 col-md-1 col-lg-1"></div>
+			<div class="col-sm-10 col-md-10 col-lg-10">
+				<p class="noticia_reportagem text-justify">{{noticia.reportagem_pt1}}</p>
 			</div>
-		{% endautoescape %}
+		</div>
+	{% endautoescape %}
 
 	<!-- tweet -->
 	{% if noticia.tweet %}
@@ -62,22 +64,20 @@
 	{% endif %}
 	
 	<!-- segunda parte da reportagem -->
-	{% if noticia.reportagem_pt2 %}
-		{% autoescape off %}
-			<div class="row">
-				<div class="col-sm-1 col-md-1 col-lg-1"></div>
-				<div class="col-sm-10 col-md-10 col-lg-10">
-					<p class="noticia_reportagem text-justify">{{noticia.reportagem_pt2}}</p>
-				</div>
+	{% autoescape off %}
+		<div class="row">
+			<div class="col-sm-1 col-md-1 col-lg-1"></div>
+			<div class="col-sm-10 col-md-10 col-lg-10">
+				<p class="noticia_reportagem text-justify">{{noticia.reportagem_pt2}}</p>
 			</div>
-		{% endautoescape %}
-	{% endif %}
+		</div>
+	{% endautoescape %}
 	<hr>
 {% else %}
 		<div class="row">
 			<div class="col-md-4 col-lg-4"></div>
 			<div class="col-sm-12 col-md-4 col-lg-4">
-				<p>Login para visualizar esta reportagem completa.</p>
+				<h3>Login para visualizar esta reportagem completa.</h3>
 			</div>
 		</div>
 	</div>
@@ -87,9 +87,13 @@
 <!-- secao de comentarios -->
 	<div class="row mb-5 mt-5">
 		<div class="col-sm-6">
-			<h2>{{qte}} comentários</h2>
+			{% if qte == 1 %}
+				<h2>{{qte}} comentário</h2>
+			{% else %}
+				<h2>{{qte}} comentários</h2>
+			{% endif %}
 		</div>
-{% if noticia.comentarios.all %}
+{% if noticia.comentarios %}
 		{% if user.is_authenticated %}
 		<div class="col-sm-6">
 			<a class="float-sm-right" href="{% url 'core:comentarioCadastro' noticia.id %}">
