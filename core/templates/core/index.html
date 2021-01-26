@@ -8,20 +8,24 @@
 	<h5 class="text-center mt-5 mb-3">Última notícia - {{noticia.data}}.</h5>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-12 col-md-6 col-xl-12">
+			<div class="col-sm-12 col-md-6 col-xl-6">
 				<!-- foto da noticia mais recente -->
 				<img class="img-fluid rounded" src="{{noticia.url_foto}}" alt="{{noticia.autorais_foto}}">
 			</div>
-			<div class="col-sm-12 col-md-6 col-xl-12">
-				<h3>
-					<!-- se estiver autenticado, pode ler a noticia completa -->
-					{% if user.is_authenticated %}
-						<a href="{% url 'core:noticiaDetalhe' noticia.id %}">{{noticia.titulo}}</a>
-					{% else %}
+			<div class="col-sm-12 col-md-6 col-xl-6">
+				{% if user.is_authenticated %}
+					<a href="{% url 'core:noticiaDetalhe' noticia.id %}">
+						<h3 class="titulo-noticia-logado">
+							<!-- se estiver autenticado, pode ler a noticia completa -->
+							{{noticia.titulo}}
+						</h3>
+					</a>
+				{% else %}
+					<h3 class="titulo-noticia">
 						<!-- se não estiver autenticado, só pode ler -->
 						{{noticia.titulo}}
-					{% endif %}
-				</h3>
+					</h3>
+				{% endif %}
 				<p class="text-justify">
 					{% autoescape off %}
 						{{noticia.reportagem_pt1}}..
@@ -40,23 +44,27 @@
 
 	{% if last_news is not None %}
 	<h5 class="mt-5 mb-3 text-center">Notícias recentes</h5>
-	{% for news in last_news %}
 	<div class="container-fluid">
-		<div class="row mb-3">
-			<div class="col-sm-12 col-md-6 col-xl-12">
+	{% for news in last_news %}
+		<div class="row mb-4">
+			<div class="col-sm-12 col-md-6 col-xl-6">
 				<!-- fotos das ultimas noticias -->
 				<img class="img-fluid rounded" src="{{news.url_foto}}" alt="{{news.autorais_foto}}">
 			</div>
-			<div class="col-sm-12 col-md-6 col-xl-12">
-				<h3>
-					<!-- se estiver autenticado, pode ler a noticia completa -->
-					{% if user.is_authenticated %}
-						<a href="{% url 'core:noticiaDetalhe' news.id %}">{{news.titulo}}</a>
-					{% else %}
-						<!-- se não estiver autenticado, só pode ler uma parte -->
+			<div class="col-sm-12 col-md-6 col-xl-6">
+				{% if user.is_authenticated %}
+					<a href="{% url 'core:noticiaDetalhe' news.id %}">
+						<h3 class="titulo-noticia-logado">
+							<!-- se estiver autenticado, pode ler a noticia completa -->
+							{{news.titulo}}
+						</h3>
+					</a>
+				{% else %}
+					<h3 class="titulo-noticia">
+						<!-- se não estiver autenticado, só pode ler -->
 						{{news.titulo}}
-					{% endif %}
-				</h3>
+					</h3>
+				{% endif %}
 				<p class="text-justify">
 					{% autoescape off %}
 						{{news.reportagem_pt1}}..
@@ -69,8 +77,8 @@
 				</p>
 			</div>
 		</div>
-	</div>
 	{% endfor %}
+	</div>
 	<h3 class="mt-5 text-center">Veja todas as notícias <a href="/noticias/">aqui</a>.</h3>
 	<hr>
 	{% endif %}

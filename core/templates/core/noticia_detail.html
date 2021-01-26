@@ -7,7 +7,7 @@
 		<div class="row mb-5">
 			<div class="col-sm-12">
 				<h1>{{noticia.titulo}}</h1>
-				<small>Por {{noticia.autor}}, {{noticia.data}}</small>
+				<small>Por {{noticia.autor}}, {{noticia.data}}</small>				
 			</div>
 		</div>
 
@@ -46,7 +46,7 @@
 		<div class="row">
 			<div class="col-sm-1 col-md-1 col-lg-1"></div>
 			<div class="col-sm-10 col-md-10 col-lg-10">
-				<p class="noticia_reportagem text-justify">{{noticia.reportagem_pt1}}</p>
+				<p class="noticia_texto text-justify">{{noticia.reportagem_pt1}}</p>
 			</div>
 		</div>
 	{% endautoescape %}
@@ -68,7 +68,7 @@
 		<div class="row">
 			<div class="col-sm-1 col-md-1 col-lg-1"></div>
 			<div class="col-sm-10 col-md-10 col-lg-10">
-				<p class="noticia_reportagem text-justify">{{noticia.reportagem_pt2}}</p>
+				<p class="noticia_texto text-justify">{{noticia.reportagem_pt2}}</p>
 			</div>
 		</div>
 	{% endautoescape %}
@@ -96,8 +96,8 @@
 {% if noticia.comentarios %}
 		{% if user.is_authenticated %}
 		<div class="col-sm-6">
-			<a class="float-sm-right" href="{% url 'core:comentarioCadastro' noticia.id %}">
-				<button class="btn btn-success">Comentar</button>
+			<a class="btn btn-success float-sm-right" href="{% url 'core:comentarioCadastro' noticia.id %}">
+				Comentar <i class="bi bi-plus"></i>
 			</a>
 		</div>
 		{% endif %}

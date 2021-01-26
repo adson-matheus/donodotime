@@ -1,12 +1,12 @@
 body{
 	background-color: #ffffff!important;
 }
-.noticia_reportagem{
+.noticia_texto{
 	word-wrap: break-word;
 }
 /* cor do nav */
 nav{
-	background-color: #82589F!important;
+	background-color: #8d310d!important;
 }
 
 /*links do nav*/
@@ -14,15 +14,18 @@ nav{
 	color: #ffffff!important;
 }
 .navbar-dark .navbar-nav .nav-link:hover{
-	color: #D6A2E8!important;
+	text-decoration: underline!important;
 }
 
 /* todos os titulos da aba noticias */
-#titulo-reportagem{
-	color: #82589F!important;
+.titulo-noticia-logado{
+	color: #8d310d!important;
 }
-#titulo-reportagem:hover{
-	color: #8e44ad!important;
+.titulo-noticia-logado:hover{
+	color: #5d2109!important;
+}
+.titulo-noticia{
+	color: #8d310d!important;
 }
 a:hover{
 	text-decoration: none!important;
