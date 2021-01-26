@@ -13,7 +13,7 @@ Para uma melhor experiência, é altamente recomendado você fazer login utiliza
 Se você deseja instalar localmente e fazer mudanças no projeto, precisará primeiro realizar algumas instalações, além de clonar o repositório.
 <br>
 
-É necessário ter o pip instalado em sua máquina, visite o site oficial e siga as instruções para instalá-lo: https://pypi.org/project/pip/. Também crie um ambiente virtual com virtualenv, <code>pip install virtualenv</code> e, em seguida, crie um novo ambiente com o comando 'virtualenv nome-do-ambiente' e o ative usando 'source nome-do-ambiente/bin/activate'. Para desativar, basta escrever deactivate no terminal.
+É necessário ter o pip instalado em sua máquina, visite o site oficial e siga as instruções para instalá-lo: https://pypi.org/project/pip/. Também crie um ambiente virtual com virtualenv na pasta do projeto clonado (não dentro da raíz do projeto!), <code>pip install virtualenv</code> e, em seguida, crie um novo ambiente com o comando 'virtualenv nome-do-ambiente' e o ative usando 'source nome-do-ambiente/bin/activate'. Para desativar, basta escrever deactivate no terminal.
 <br>
 
 Para baixar os pacotes requeridos, ative o seu virtualenv e vá até a pasta raiz do projeto, onde está o arquivo 'requirements.txt' e use o comando:
