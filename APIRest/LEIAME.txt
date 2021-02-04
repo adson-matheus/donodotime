@@ -1,0 +1,3 @@
+Estes arquivos estão na branch feat/restFrameworkAPI
+lembrar de continuar ou apagar esse módulo
+atualmente retorna todos os comentários do blog, não faz sentido
