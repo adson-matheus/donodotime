@@ -11,7 +11,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 
-ALLOWED_HOSTS = ['donodotime.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['donodotime.herokuapp.com', '127.0.0.1',]
 
 # social-auth
 
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'social_django',
     'core',
+    'rest_framework',
+    'APIRest',
 
 ]
 SITE_ID = 1
