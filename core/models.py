@@ -25,4 +25,4 @@ class Comentario(models.Model):
 	class Meta:
 		ordering = ('-id',)
 	def __str__(self):
-		return '%s, em "%s"' %(self.nome, self.noticia.titulo)
+		return '%s - %s' %(self.nome, self.noticia.titulo)
